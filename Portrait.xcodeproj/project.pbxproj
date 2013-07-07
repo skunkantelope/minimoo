@@ -23,6 +23,7 @@
 		55E9C7831788F3C2001A9BB4 /* PopPortraitViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 55E9C7811788F3C2001A9BB4 /* PopPortraitViewController.m */; };
 		55E9C7841788F3C2001A9BB4 /* PopPortraitViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 55E9C7821788F3C2001A9BB4 /* PopPortraitViewController.xib */; };
 		55E9C7871788F4D4001A9BB4 /* PaintPortraitViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 55E9C7861788F4D4001A9BB4 /* PaintPortraitViewController.m */; };
+		55E9C78C17891B22001A9BB4 /* CoreImage.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 55E9C78B17891B21001A9BB4 /* CoreImage.framework */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -50,6 +51,7 @@
 		55E9C7821788F3C2001A9BB4 /* PopPortraitViewController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = PopPortraitViewController.xib; sourceTree = "<group>"; };
 		55E9C7851788F4D4001A9BB4 /* PaintPortraitViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = PaintPortraitViewController.h; sourceTree = "<group>"; };
 		55E9C7861788F4D4001A9BB4 /* PaintPortraitViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = PaintPortraitViewController.m; sourceTree = "<group>"; };
+		55E9C78B17891B21001A9BB4 /* CoreImage.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoreImage.framework; path = System/Library/Frameworks/CoreImage.framework; sourceTree = SDKROOT; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -57,6 +59,7 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				55E9C78C17891B22001A9BB4 /* CoreImage.framework in Frameworks */,
 				55E9C7591788EEEA001A9BB4 /* UIKit.framework in Frameworks */,
 				55E9C75B1788EEEA001A9BB4 /* Foundation.framework in Frameworks */,
 				55E9C75D1788EEEA001A9BB4 /* CoreGraphics.framework in Frameworks */,
@@ -86,6 +89,7 @@
 		55E9C7571788EEEA001A9BB4 /* Frameworks */ = {
 			isa = PBXGroup;
 			children = (
+				55E9C78B17891B21001A9BB4 /* CoreImage.framework */,
 				55E9C7581788EEEA001A9BB4 /* UIKit.framework */,
 				55E9C75A1788EEEA001A9BB4 /* Foundation.framework */,
 				55E9C75C1788EEEA001A9BB4 /* CoreGraphics.framework */,
@@ -103,13 +107,13 @@
 				55E9C7861788F4D4001A9BB4 /* PaintPortraitViewController.m */,
 				55E9C7731788EEEA001A9BB4 /* PortraitViewController.h */,
 				55E9C7741788EEEA001A9BB4 /* PortraitViewController.m */,
-				55E9C75F1788EEEA001A9BB4 /* Supporting Files */,
 				55E9C77B1788F32D001A9BB4 /* PortraitFaceDefineViewController.h */,
 				55E9C77C1788F32D001A9BB4 /* PortraitFaceDefineViewController.m */,
 				55E9C77D1788F32D001A9BB4 /* PortraitFaceDefineViewController.xib */,
 				55E9C7801788F3C2001A9BB4 /* PopPortraitViewController.h */,
 				55E9C7811788F3C2001A9BB4 /* PopPortraitViewController.m */,
 				55E9C7821788F3C2001A9BB4 /* PopPortraitViewController.xib */,
+				55E9C75F1788EEEA001A9BB4 /* Supporting Files */,
 			);
 			path = Portrait;
 			sourceTree = "<group>";

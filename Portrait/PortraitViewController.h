@@ -8,6 +8,8 @@
 
 #import <UIKit/UIKit.h>
 
-@interface PortraitViewController : UIViewController
+@interface PortraitViewController : UIViewController <UIImagePickerControllerDelegate, UINavigationControllerDelegate>
+
+- (IBAction)selectPhotoFromAlbum:(id)sender;
 
 @end

@@ -9,5 +9,8 @@
 #import <UIKit/UIKit.h>
 
 @interface PortraitFaceDefineViewController : UIViewController
+@property (weak, nonatomic) IBOutlet UIPageControl *pageControl;
+
+- (id)initWithImage:(UIImage *)image;
 
 @end
