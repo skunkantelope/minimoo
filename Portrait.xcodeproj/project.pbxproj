@@ -24,6 +24,7 @@
 		55E9C7841788F3C2001A9BB4 /* PopPortraitViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 55E9C7821788F3C2001A9BB4 /* PopPortraitViewController.xib */; };
 		55E9C7871788F4D4001A9BB4 /* PaintPortraitViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 55E9C7861788F4D4001A9BB4 /* PaintPortraitViewController.m */; };
 		55E9C78C17891B22001A9BB4 /* CoreImage.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 55E9C78B17891B21001A9BB4 /* CoreImage.framework */; };
+		55E9C78E178A0BB7001A9BB4 /* QuartzCore.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 55E9C78D178A0BB6001A9BB4 /* QuartzCore.framework */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -52,6 +53,7 @@
 		55E9C7851788F4D4001A9BB4 /* PaintPortraitViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = PaintPortraitViewController.h; sourceTree = "<group>"; };
 		55E9C7861788F4D4001A9BB4 /* PaintPortraitViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = PaintPortraitViewController.m; sourceTree = "<group>"; };
 		55E9C78B17891B21001A9BB4 /* CoreImage.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoreImage.framework; path = System/Library/Frameworks/CoreImage.framework; sourceTree = SDKROOT; };
+		55E9C78D178A0BB6001A9BB4 /* QuartzCore.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = QuartzCore.framework; path = System/Library/Frameworks/QuartzCore.framework; sourceTree = SDKROOT; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -59,6 +61,7 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				55E9C78E178A0BB7001A9BB4 /* QuartzCore.framework in Frameworks */,
 				55E9C78C17891B22001A9BB4 /* CoreImage.framework in Frameworks */,
 				55E9C7591788EEEA001A9BB4 /* UIKit.framework in Frameworks */,
 				55E9C75B1788EEEA001A9BB4 /* Foundation.framework in Frameworks */,
@@ -89,6 +92,7 @@
 		55E9C7571788EEEA001A9BB4 /* Frameworks */ = {
 			isa = PBXGroup;
 			children = (
+				55E9C78D178A0BB6001A9BB4 /* QuartzCore.framework */,
 				55E9C78B17891B21001A9BB4 /* CoreImage.framework */,
 				55E9C7581788EEEA001A9BB4 /* UIKit.framework */,
 				55E9C75A1788EEEA001A9BB4 /* Foundation.framework */,
