@@ -25,6 +25,8 @@
 		55E9C7871788F4D4001A9BB4 /* PaintPortraitViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 55E9C7861788F4D4001A9BB4 /* PaintPortraitViewController.m */; };
 		55E9C78C17891B22001A9BB4 /* CoreImage.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 55E9C78B17891B21001A9BB4 /* CoreImage.framework */; };
 		55E9C78E178A0BB7001A9BB4 /* QuartzCore.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 55E9C78D178A0BB6001A9BB4 /* QuartzCore.framework */; };
+		55E9C794178A859C001A9BB4 /* FaceRect.m in Sources */ = {isa = PBXBuildFile; fileRef = 55E9C792178A859C001A9BB4 /* FaceRect.m */; };
+		55E9C79F178B24DA001A9BB4 /* CoordinateSystemConversion.m in Sources */ = {isa = PBXBuildFile; fileRef = 55E9C79E178B24DA001A9BB4 /* CoordinateSystemConversion.m */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -54,6 +56,10 @@
 		55E9C7861788F4D4001A9BB4 /* PaintPortraitViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = PaintPortraitViewController.m; sourceTree = "<group>"; };
 		55E9C78B17891B21001A9BB4 /* CoreImage.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoreImage.framework; path = System/Library/Frameworks/CoreImage.framework; sourceTree = SDKROOT; };
 		55E9C78D178A0BB6001A9BB4 /* QuartzCore.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = QuartzCore.framework; path = System/Library/Frameworks/QuartzCore.framework; sourceTree = SDKROOT; };
+		55E9C792178A859C001A9BB4 /* FaceRect.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = FaceRect.m; path = ../FaceRect.m; sourceTree = "<group>"; };
+		55E9C793178A859C001A9BB4 /* FaceRect.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = FaceRect.h; path = ../FaceRect.h; sourceTree = "<group>"; };
+		55E9C79D178B24DA001A9BB4 /* CoordinateSystemConversion.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = CoordinateSystemConversion.h; path = ../CoordinateSystemConversion.h; sourceTree = "<group>"; };
+		55E9C79E178B24DA001A9BB4 /* CoordinateSystemConversion.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = CoordinateSystemConversion.m; path = ../CoordinateSystemConversion.m; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -104,6 +110,10 @@
 		55E9C75E1788EEEA001A9BB4 /* Portrait */ = {
 			isa = PBXGroup;
 			children = (
+				55E9C79D178B24DA001A9BB4 /* CoordinateSystemConversion.h */,
+				55E9C79E178B24DA001A9BB4 /* CoordinateSystemConversion.m */,
+				55E9C793178A859C001A9BB4 /* FaceRect.h */,
+				55E9C792178A859C001A9BB4 /* FaceRect.m */,
 				55E9C7671788EEEA001A9BB4 /* PortraitAppDelegate.h */,
 				55E9C7681788EEEA001A9BB4 /* PortraitAppDelegate.m */,
 				55E9C7701788EEEA001A9BB4 /* MainStoryboard.storyboard */,
@@ -211,6 +221,8 @@
 				55E9C77E1788F32D001A9BB4 /* PortraitFaceDefineViewController.m in Sources */,
 				55E9C7831788F3C2001A9BB4 /* PopPortraitViewController.m in Sources */,
 				55E9C7871788F4D4001A9BB4 /* PaintPortraitViewController.m in Sources */,
+				55E9C794178A859C001A9BB4 /* FaceRect.m in Sources */,
+				55E9C79F178B24DA001A9BB4 /* CoordinateSystemConversion.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
