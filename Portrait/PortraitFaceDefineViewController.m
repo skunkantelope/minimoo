@@ -7,19 +7,26 @@
 //
 
 #import "PortraitFaceDefineViewController.h"
+#import "FaceRect.h"
+#import "PaintPortraitViewController.h"
 
 @interface PortraitFaceDefineViewController () {
     CIContext *context;
     CIDetector *detector;
     
 }
-@property (retain, nonatomic) UIImage *image;
+@property (retain, nonatomic) UIImage *image; // store a reference to the album photo
+@property (retain, nonatomic) NSMutableArray *faces; // store UIImageView
+
 - (void)detectFaces;
 //- (UIImage *)createFaceImage:(CGRect)rect;
 
 @end
 
 #define IMAGE_WIDTH 300
+#define IMAGE_HEIGHT 400
+#define X_OFFSET 10
+#define Y_OFFSET 10
 
 @implementation PortraitFaceDefineViewController
 
@@ -42,7 +49,7 @@
         detector = [CIDetector detectorOfType:CIDetectorTypeFace context:context options:opts];
         
         self.image = image;
-
+        self.faces = [[NSMutableArray alloc] init];
     }
     return self;
 }
@@ -51,8 +58,11 @@
 {
     [super viewDidLoad];
     // Do any additional setup after loading the view from its nib.
-   // self.imageView.image = self.image;
     [self detectFaces];
+    
+    // show the first face; view.tag = 30
+    [self.view bringSubviewToFront:[self.faces objectAtIndex:0]];
+
 }
 
 - (void)detectFaces {
@@ -61,67 +71,65 @@
  //     NSDictionary *opts = [NSDictionary dictionaryWithObject:[[image properties] valueForKey:(NSString*)kCGImagePropertyOrientation] forKey:CIDetectorImageOrientation];
     NSArray *features = [detector featuresInImage:image options:nil];
     
-    NSLog(@"number of faces: %i", [features count]);
+    int count = [features count];
+    self.pageControl.numberOfPages = count;
+    NSLog(@"number of faces: %i", count);
     // In case there are no faces detected, the scene goes back to the beginning scene.
-    if ([features count] < 1) {
+    if (count < 1) {
         // todo: animation to tell user to pick a photo with faces.
         [self.presentingViewController dismissViewControllerAnimated:YES completion:nil];
         return;
     }
-    
-//    for (CIFaceFeature *feature in features) {
-        // todo: transform the coordinates 
-        // todo: draw the content bordered by feature, bitmap context. Each is an UIView. Use page control
-   /*     float scale = IMAGE_WIDTH / feature.bounds.size.width;
-        float IMAGE_HEIGHT = feature.bounds.size.height * scale;
+  
+    for (CIFaceFeature *feature in features) {
+
+        UIImageView *imageView = [[UIImageView alloc] initWithImage:self.image];
+        imageView.contentMode = UIViewContentModeScaleAspectFit;
+        imageView.frame = CGRectMake(X_OFFSET, Y_OFFSET, IMAGE_WIDTH, IMAGE_HEIGHT);
+        imageView.userInteractionEnabled = YES;
         
-        CGSize imageSize = CGSizeMake(IMAGE_WIDTH, IMAGE_HEIGHT);
-        UIGraphicsBeginImageContextWithOptions(imageSize, NO, 0.0);
+        // add face rect to imageview.
+        // use utility functions to calculate the right frame for FaceRect
+        float scale = scaleFactor(self.image.size, CGSizeMake(IMAGE_WIDTH, IMAGE_HEIGHT));
+        CGRect featureRect = userCoordinateFromGraphicsCoordinate(feature.bounds, self.image.size);
+        CGRect featureFrame = pointFromPixel(featureRect, scale);
+        
+        FaceRect *faceRect = [[FaceRect alloc] initWithFrame:featureFrame];
+        //[faceRect becomeFirstResponder];
+        [imageView addSubview:faceRect];
        
-        CGContextRef currentContext = UIGraphicsGetCurrentContext();
-      
-        CGContextSetInterpolationQuality(currentContext, kCGInterpolationHigh);
+        [self.faces addObject:imageView];
         
-     //   CGContextTranslateCTM(currentContext, 0, feature.bounds.size.height);
-     //   CGContextScaleCTM(currentContext, 1, -1);
-        CGContextDrawImage(currentContext, CGRectIntegral(feature.bounds), [self.image CGImage]);
-        
-        UIImage *faceImage = UIGraphicsGetImageFromCurrentImageContext();
-        
-        UIGraphicsEndImageContext();
-        self.imageView.image = faceImage;
-    //    [faceImage drawInRect:self.imageView.bounds];
-    */
+        [self.view addSubview:imageView];
+    }
     
- //   }
-    CIFaceFeature *feature = [features objectAtIndex:0];
-    NSLog(@"feature bound %f %f %f %f", feature.bounds.origin.x, feature.bounds.origin.y, feature.bounds.size.width, feature.bounds.size.height);
+}
+
+// Pixellate the resulting image.
+- (UIImage *)createFaceImage:(CGRect)rect {
+   // NSLog(@"feature bound %f %f %f %f", rect.origin.x, rect.origin.y, rect.size.width, rect.size.height);
     UIGraphicsBeginImageContextWithOptions(self.image.size, NO, 0);
-    NSLog(@"image size %f %f", self.image.size.width, self.image.size.height);
+   // NSLog(@"image size %f %f", self.image.size.width, self.image.size.height);
     
     [self.image drawInRect:CGRectMake(0, 0, self.image.size.width, self.image.size.height)];
     
-    CGContextRef cgContext = UIGraphicsGetCurrentContext();
+ /*   CGContextRef cgContext = UIGraphicsGetCurrentContext();
     
+    CGContextSetInterpolationQuality(cgContext, kCGInterpolationHigh);
     CGContextTranslateCTM(cgContext, 0, self.image.size.height);
     CGContextScaleCTM(cgContext, 1, -1);
     
     CGContextSetRGBFillColor(cgContext, 0.0, 0.0, 0.0, 0.5);
     CGContextSetStrokeColorWithColor(cgContext, [UIColor whiteColor].CGColor);
     CGContextSetLineWidth(cgContext, 10.0f);
-    CGContextAddRect(cgContext, feature.bounds);
+    CGContextAddRect(cgContext, rect);
     CGContextDrawPath(cgContext, kCGPathFillStroke);
+  */  
     
     UIImage * anImage = UIGraphicsGetImageFromCurrentImageContext();
-    
-    self.imageView.image = anImage;
-    
     UIGraphicsEndImageContext();
+    return anImage;
 }
-/*
-- (UIImage *)createFaceImage:(CGRect)rect {
-    
-}*/
 
 - (void)didReceiveMemoryWarning
 {
@@ -129,7 +137,39 @@
     // Dispose of any resources that can be recreated.
 }
 
+- (IBAction)drawFaceFullScreen:(id)sender {
+    // todo: initialize PaintPortraitViewController
+    CGRect viewFrame;
+    UIView *view = [self.faces objectAtIndex:self.pageControl.currentPage];
+    for (UIView *subView in [view subviews]) {
+        if ([subView isMemberOfClass:[FaceRect class]]) {
+            viewFrame = subView.frame;
+        }
+    }
+
+    float scale = scaleFactor(self.image.size, CGSizeMake(IMAGE_WIDTH, IMAGE_HEIGHT));
+    CGRect imageRect = pixelFromPoint(viewFrame, scale);
+    
+    CGImageRef imageRef = CGImageCreateWithImageInRect([self.image CGImage], imageRect);
+    
+    UIGraphicsBeginImageContextWithOptions(imageRect.size, NO, 0);
+    CGContextRef currentContext = UIGraphicsGetCurrentContext();
+    CGContextSetInterpolationQuality(currentContext, kCGInterpolationHigh);
+    
+    CGContextDrawImage(currentContext, imageRect, imageRef);
+    UIImage *anImage = UIGraphicsGetImageFromCurrentImageContext();
+    UIGraphicsEndImageContext();
+    
+ 
+    PaintPortraitViewController *viewController = [[PaintPortraitViewController alloc] initWithImage:anImage];
+    [self presentViewController:viewController animated:YES completion:nil];
+
+}
+
 - (IBAction)nextFace:(id)sender {
+    NSLog(@"%i, %@", self.pageControl.currentPage,[self.faces objectAtIndex:self.pageControl.currentPage]);
+    [self.view bringSubviewToFront:[self.faces objectAtIndex:self.pageControl.currentPage]];
     
 }
+
 @end

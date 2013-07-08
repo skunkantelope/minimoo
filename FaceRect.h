@@ -8,7 +8,4 @@
 
 @interface FaceRect : UIView
 
-// target implement zoomInOnFrame method or use delegate design. 
-- (id) initWithFrame:(CGRect)frame target:(id)object;
-
 @end

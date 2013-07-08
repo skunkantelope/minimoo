@@ -9,7 +9,8 @@
 #import <UIKit/UIKit.h>
 
 @interface PortraitFaceDefineViewController : UIViewController
-@property (weak, nonatomic) IBOutlet UIImageView *imageView;
+- (IBAction)drawFaceFullScreen:(id)sender;
+
 - (IBAction)nextFace:(id)sender;
 @property (weak, nonatomic) IBOutlet UIPageControl *pageControl;
 

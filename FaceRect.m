@@ -19,7 +19,7 @@
 #define TOUCH_RADIUS 10
 #define TRANSLATION_TOLERANCE 5
 
-- (id)initWithFrame:(CGRect)frame target:(id)object {
+- (id)initWithFrame:(CGRect)frame {
     self = [super initWithFrame:frame];
     if (self) {
         // Initialization code
@@ -30,23 +30,7 @@
         
         self.backgroundColor = [UIColor colorWithRed:0.0 green:0.0 blue:0.0 alpha:0.3];
         
-        UILongPressGestureRecognizer *longPress = [[UILongPressGestureRecognizer alloc] initWithTarget:object action:@selector(zoomInOnFrame:)];
-
-        [self addGestureRecognizer:longPress];
-    }
-    return self;
-}
-
-- (id)initWithFrame:(CGRect)frame
-{
-    self = [super initWithFrame:frame];
-    if (self) {
-        // Initialization code
-        adjustLeftBound = FALSE;
-        adjustLowerBound = FALSE;
-        adjustRightBound = FALSE;
-        adjustUpperBound = FALSE;
-
+       
     }
     return self;
 }
@@ -103,9 +87,9 @@
     UITouch *firstTouch = [touches anyObject];
     CGPoint touchTo = [firstTouch locationInView:self.superview];
     CGPoint touchFrom = [firstTouch previousLocationInView:self.superview];
-      NSLog(@"to %f %f", touchTo.x, touchTo.y);
-      NSLog(@"from %f %f", touchFrom.x, touchFrom.y);
-      NSLog(@"frame %f %f", self.frame.origin.x, self.frame.origin.y);
+    //  NSLog(@"to %f %f", touchTo.x, touchTo.y);
+    //  NSLog(@"from %f %f", touchFrom.x, touchFrom.y);
+    //  NSLog(@"frame %f %f", self.frame.origin.x, self.frame.origin.y);
     
     float dx = touchTo.x - touchFrom.x;
     float dy = touchTo.y - touchFrom.y;
