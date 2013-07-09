@@ -141,9 +141,14 @@
     // todo: initialize PaintPortraitViewController
     CGRect viewFrame;
     UIView *view = [self.faces objectAtIndex:self.pageControl.currentPage];
+
     for (UIView *subView in [view subviews]) {
         if ([subView isMemberOfClass:[FaceRect class]]) {
-            viewFrame = subView.frame;
+            
+            viewFrame = faceRectInImage(subView.frame, view.frame.size, self.image.size);
+            
+            NSLog(@"viewFrame: %f %f %f %f", viewFrame.origin.x, viewFrame.origin.y, viewFrame.size.width, viewFrame.size.height);
+            break;
         }
     }
 
@@ -154,15 +159,23 @@
     
     UIGraphicsBeginImageContextWithOptions(imageRect.size, NO, 0);
     CGContextRef currentContext = UIGraphicsGetCurrentContext();
-    CGContextSetInterpolationQuality(currentContext, kCGInterpolationHigh);
     
-    CGContextDrawImage(currentContext, imageRect, imageRef);
+    CGContextSetInterpolationQuality(currentContext, kCGInterpolationHigh);
+    CGContextTranslateCTM(currentContext, 0, imageRect.size.height);
+    CGContextScaleCTM(currentContext, 1, -1);
+    
+    CGContextDrawImage(currentContext, CGRectMake(0, 0, IMAGE_WIDTH, IMAGE_HEIGHT), imageRef);
     UIImage *anImage = UIGraphicsGetImageFromCurrentImageContext();
     UIGraphicsEndImageContext();
     
- 
-    PaintPortraitViewController *viewController = [[PaintPortraitViewController alloc] initWithImage:anImage];
-    [self presentViewController:viewController animated:YES completion:nil];
+    CGImageRelease(imageRef);
+    
+/*    UIImageView *test = [[UIImageView alloc] initWithImage:anImage];
+    test.contentMode = UIViewContentModeScaleAspectFit;
+    test.frame = self.view.bounds;
+    [self.view addSubview:test]; */
+//    PaintPortraitViewController *viewController = [[PaintPortraitViewController alloc] initWithImage:anImage];
+//    [self presentViewController:viewController animated:YES completion:nil];
 
 }
 

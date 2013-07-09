@@ -11,3 +11,5 @@ CGRect pointFromPixel(CGRect rect, float scale);
 CGRect pixelFromPoint(CGRect rect, float scale);
 
 CGRect userCoordinateFromGraphicsCoordinate(CGRect rect, CGSize imageSize);
+
+CGRect faceRectInImage(CGRect faceRect, CGSize view, CGSize image);
