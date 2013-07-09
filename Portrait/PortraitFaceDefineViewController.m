@@ -19,7 +19,14 @@
 @property (retain, nonatomic) NSMutableArray *faces; // store UIImageView
 
 - (void)detectFaces;
-//- (UIImage *)createFaceImage:(CGRect)rect;
+- (CIImage *)applyGreyScaleFilter:(CIImage *) image;
+- (CIImage *)applyPixellateFilter:(CIImage *) image;
+- (CIImage *)applySharpenFilter:(CIImage *) image;
+- (CIImage *)applyMedianFilter:(CIImage *) image;
+- (CIImage *)applyMinGreyScaleFilter:(CIImage *) image;
+- (CIImage *)applyMaxGreyScaleFilter:(CIImage *) image;
+- (CIImage *)applyDesaturationFilter:(CIImage *) cgImage;
+- (void)renderQuartzImage:(CGImageRef) image;
 
 @end
 
@@ -105,30 +112,55 @@
     
 }
 
+- (CIImage *) applyGreyScaleFilter:(CIImage *)image {
+
+    CIFilter *filter = [CIFilter filterWithName:@"CIColorMonochrome"];
+    [filter setValue:image forKey:@"inputImage"];
+    CIColor *black = [CIColor colorWithRed:0.0 green:0.0 blue:0.0];
+    [filter setValue:black forKey:@"inputColor"];
+    return [filter valueForKey:@"outputImage"];
+    
+}
+
 // Pixellate the resulting image.
-- (UIImage *)createFaceImage:(CGRect)rect {
-   // NSLog(@"feature bound %f %f %f %f", rect.origin.x, rect.origin.y, rect.size.width, rect.size.height);
-    UIGraphicsBeginImageContextWithOptions(self.image.size, NO, 0);
-   // NSLog(@"image size %f %f", self.image.size.width, self.image.size.height);
-    
-    [self.image drawInRect:CGRectMake(0, 0, self.image.size.width, self.image.size.height)];
-    
- /*   CGContextRef cgContext = UIGraphicsGetCurrentContext();
-    
-    CGContextSetInterpolationQuality(cgContext, kCGInterpolationHigh);
-    CGContextTranslateCTM(cgContext, 0, self.image.size.height);
-    CGContextScaleCTM(cgContext, 1, -1);
-    
-    CGContextSetRGBFillColor(cgContext, 0.0, 0.0, 0.0, 0.5);
-    CGContextSetStrokeColorWithColor(cgContext, [UIColor whiteColor].CGColor);
-    CGContextSetLineWidth(cgContext, 10.0f);
-    CGContextAddRect(cgContext, rect);
-    CGContextDrawPath(cgContext, kCGPathFillStroke);
-  */  
-    
-    UIImage * anImage = UIGraphicsGetImageFromCurrentImageContext();
-    UIGraphicsEndImageContext();
-    return anImage;
+- (CIImage *)applyPixellateFilter:(CIImage *)image {
+    CIFilter *filter = [CIFilter filterWithName:@"CIPixellate"];
+    [filter setValue:image forKey:@"inputImage"];
+    [filter setValue:[NSNumber numberWithFloat:20.0] forKey:@"inputScale"];
+  //  CIVector * position = [CIVector vectorWithX:0.0 Y:200.0];
+  //  [filter setValue:position forKey:@"inputCenter"];
+    return [filter valueForKey:@"outputImage"];
+}
+
+- (CIImage *)applyMaxGreyScaleFilter:(CIImage *)image {
+    CIFilter *filter = [CIFilter filterWithName:@"CIMaximumComponent"];
+    [filter setValue:image forKey:@"inputImage"];
+    return [filter valueForKey:@"outputImage"];
+}
+
+- (CIImage *)applyMinGreyScaleFilter:(CIImage *)image {
+    CIFilter *filter = [CIFilter filterWithName:@"CIMinimumComponent"];
+    [filter setValue:image forKey:@"inputImage"];
+    return [filter valueForKey:@"outputImage"];
+}
+
+- (CIImage *)applySharpenFilter:(CIImage *)image {
+    CIFilter *filter = [CIFilter filterWithName:@"CISharpenLuminance"];
+    [filter setValue:image forKey:@"inputImage"];
+    return [filter valueForKey:@"outputImage"];
+}
+
+- (CIImage *)applyDesaturationFilter:(CIImage *)image {
+    CIFilter *filter = [CIFilter filterWithName:@"CIColorControls"];
+    [filter setValue:image forKey:@"inputImage"];
+    [filter setValue:[NSNumber numberWithFloat:0.0] forKey:@"inputSaturation"];
+    return [filter valueForKey:@"outputImage"];
+}
+
+- (CIImage *)applyMedianFilter:(CIImage *)image {
+    CIFilter *filter = [CIFilter filterWithName:@"CIMedianFilter"];
+    [filter setValue:image forKey:@"inputImage"];
+    return [filter valueForKey:@"outputImage"];
 }
 
 - (void)didReceiveMemoryWarning
@@ -157,25 +189,38 @@
     
     CGImageRef imageRef = CGImageCreateWithImageInRect([self.image CGImage], imageRect);
     
-    UIGraphicsBeginImageContextWithOptions(imageRect.size, NO, 0);
-    CGContextRef currentContext = UIGraphicsGetCurrentContext();
-    
-    CGContextSetInterpolationQuality(currentContext, kCGInterpolationHigh);
-    CGContextTranslateCTM(currentContext, 0, imageRect.size.height);
-    CGContextScaleCTM(currentContext, 1, -1);
-    
-    CGContextDrawImage(currentContext, CGRectMake(0, 0, IMAGE_WIDTH, IMAGE_HEIGHT), imageRef);
-    UIImage *anImage = UIGraphicsGetImageFromCurrentImageContext();
-    UIGraphicsEndImageContext();
+    CIImage *image = [CIImage imageWithCGImage:imageRef];
     
     CGImageRelease(imageRef);
     
-/*    UIImageView *test = [[UIImageView alloc] initWithImage:anImage];
-    test.contentMode = UIViewContentModeScaleAspectFit;
-    test.frame = self.view.bounds;
-    [self.view addSubview:test]; */
 //    PaintPortraitViewController *viewController = [[PaintPortraitViewController alloc] initWithImage:anImage];
 //    [self presentViewController:viewController animated:YES completion:nil];
+    
+    CIImage *touched1 = [self applySharpenFilter:[self applyDesaturationFilter:image]];
+    CIImage *touched = [self applyPixellateFilter:touched1];
+    CGImageRef result = [context createCGImage:touched fromRect:[touched extent]];
+    
+    [self renderQuartzImage:result];
+
+}
+
+- (void)renderQuartzImage:(CGImageRef)image {
+     UIGraphicsBeginImageContextWithOptions(CGSizeMake(IMAGE_WIDTH, IMAGE_HEIGHT), NO, 0);
+     CGContextRef currentContext = UIGraphicsGetCurrentContext();
+     
+     CGContextSetInterpolationQuality(currentContext, kCGInterpolationHigh);
+     CGContextTranslateCTM(currentContext, 0, IMAGE_HEIGHT);
+     CGContextScaleCTM(currentContext, 1, -1);
+     
+     CGContextDrawImage(currentContext, CGRectMake(0, 0, IMAGE_WIDTH, IMAGE_HEIGHT), image);
+     UIImage *anImage = UIGraphicsGetImageFromCurrentImageContext();
+    
+     UIGraphicsEndImageContext();
+    
+     UIImageView *test = [[UIImageView alloc] initWithImage:anImage];
+     test.contentMode = UIViewContentModeScaleAspectFit;
+     test.frame = self.view.bounds;
+     [self.view addSubview:test];
 
 }
 
