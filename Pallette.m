@@ -8,7 +8,7 @@
 
 #import "Pallette.h"
 
-#define kColor 5
+#define kColor 6
 
 @implementation Pallette 
 
@@ -32,14 +32,16 @@
         [hue getHue:&chroma saturation:&saturation brightness:&brightness alpha:&alpha];
         
         UIColor *white = [UIColor whiteColor];
+        
+        UIColor *complementary = [UIColor colorWithHue:arc4random_uniform(1) - chroma saturation:saturation brightness:brightness alpha:1.0];
         UIColor *highlight = [UIColor colorWithHue:chroma saturation:0.1 brightness:1.0 alpha:1.0];
         UIColor *light = [UIColor colorWithHue:chroma saturation:0.3 brightness:1.0 alpha:1.0];
         UIColor *dark = [UIColor colorWithHue:chroma saturation:1.0 brightness:0.7 alpha:1.0];
         UIColor *shadow = [UIColor colorWithHue:chroma saturation:1.0 brightness:0.0 alpha:1.0];
         
-        NSArray *colors = @[white, highlight, light, dark, shadow];
+        NSArray *colors = @[complementary, white, highlight, light, dark, shadow];
         
-        float xOffset = 50.0;
+        float xOffset = 30.0;
         float width = 40.0;
         
         for (int i = 0; i < kColor; ++i) {
@@ -53,7 +55,7 @@
             [self addSubview:view];
         }
         
-        self.backgroundColor = [UIColor lightGrayColor];
+      //  self.backgroundColor = [UIColor lightGrayColor];
     }
     return  self;    
 }
