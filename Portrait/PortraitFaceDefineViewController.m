@@ -8,7 +8,8 @@
 
 #import "PortraitFaceDefineViewController.h"
 #import "FaceRect.h"
-#import "PaintPortraitViewController.h"
+//#import "PaintPortraitViewController.h"
+#import "PopPortraitViewController.h"
 
 @interface PortraitFaceDefineViewController () {
     CIContext *context;
@@ -192,10 +193,7 @@
     CIImage *image = [CIImage imageWithCGImage:imageRef];
     
     CGImageRelease(imageRef);
-    
-//    PaintPortraitViewController *viewController = [[PaintPortraitViewController alloc] initWithImage:anImage];
-//    [self presentViewController:viewController animated:YES completion:nil];
-    
+        
     CIImage *touched1 = [self applySharpenFilter:[self applyDesaturationFilter:image]];
     CIImage *touched = [self applyPixellateFilter:touched1];
     CGImageRef result = [context createCGImage:touched fromRect:[touched extent]];
@@ -216,16 +214,21 @@
      UIImage *anImage = UIGraphicsGetImageFromCurrentImageContext();
     
      UIGraphicsEndImageContext();
-    
+ /*
      UIImageView *test = [[UIImageView alloc] initWithImage:anImage];
      test.contentMode = UIViewContentModeScaleAspectFit;
      test.frame = self.view.bounds;
      [self.view addSubview:test];
+  */  
+   // PaintPortraitViewController *viewController = [[PaintPortraitViewController alloc] initWithImage:anImage];
+    PopPortraitViewController *viewController = [[PopPortraitViewController alloc] initWithImage:anImage];
+    [self presentViewController:viewController animated:YES completion:nil];
+
 
 }
 
 - (IBAction)nextFace:(id)sender {
-    NSLog(@"%i, %@", self.pageControl.currentPage,[self.faces objectAtIndex:self.pageControl.currentPage]);
+    //NSLog(@"%i, %@", self.pageControl.currentPage,[self.faces objectAtIndex:self.pageControl.currentPage]);
     [self.view bringSubviewToFront:[self.faces objectAtIndex:self.pageControl.currentPage]];
     
 }

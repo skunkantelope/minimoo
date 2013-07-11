@@ -7,6 +7,9 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		55485443178DCCAB00556E49 /* Pallette.m in Sources */ = {isa = PBXBuildFile; fileRef = 55485442178DCCAB00556E49 /* Pallette.m */; };
+		5548544C178DFCA400556E49 /* twitter2.png in Resources */ = {isa = PBXBuildFile; fileRef = 5548544B178DFCA400556E49 /* twitter2.png */; };
+		5548544E178DFDB300556E49 /* tumblr.png in Resources */ = {isa = PBXBuildFile; fileRef = 5548544D178DFDB300556E49 /* tumblr.png */; };
 		55E9C7591788EEEA001A9BB4 /* UIKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 55E9C7581788EEEA001A9BB4 /* UIKit.framework */; };
 		55E9C75B1788EEEA001A9BB4 /* Foundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 55E9C75A1788EEEA001A9BB4 /* Foundation.framework */; };
 		55E9C75D1788EEEA001A9BB4 /* CoreGraphics.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 55E9C75C1788EEEA001A9BB4 /* CoreGraphics.framework */; };
@@ -27,9 +30,16 @@
 		55E9C78E178A0BB7001A9BB4 /* QuartzCore.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 55E9C78D178A0BB6001A9BB4 /* QuartzCore.framework */; };
 		55E9C794178A859C001A9BB4 /* FaceRect.m in Sources */ = {isa = PBXBuildFile; fileRef = 55E9C792178A859C001A9BB4 /* FaceRect.m */; };
 		55E9C79F178B24DA001A9BB4 /* CoordinateSystemConversion.m in Sources */ = {isa = PBXBuildFile; fileRef = 55E9C79E178B24DA001A9BB4 /* CoordinateSystemConversion.m */; };
+		55ECB6CA178CFE58007EDB6B /* twitter.png in Resources */ = {isa = PBXBuildFile; fileRef = 55ECB6C9178CFE57007EDB6B /* twitter.png */; };
+		55ECB6CC178D0088007EDB6B /* mail.png in Resources */ = {isa = PBXBuildFile; fileRef = 55ECB6CB178D0088007EDB6B /* mail.png */; };
+		55ECB6CE178D0305007EDB6B /* photo.png in Resources */ = {isa = PBXBuildFile; fileRef = 55ECB6CD178D0305007EDB6B /* photo.png */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
+		55485441178DCCAB00556E49 /* Pallette.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = Pallette.h; path = ../Pallette.h; sourceTree = "<group>"; };
+		55485442178DCCAB00556E49 /* Pallette.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = Pallette.m; path = ../Pallette.m; sourceTree = "<group>"; };
+		5548544B178DFCA400556E49 /* twitter2.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = twitter2.png; sourceTree = "<group>"; };
+		5548544D178DFDB300556E49 /* tumblr.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = tumblr.png; sourceTree = "<group>"; };
 		55E9C7551788EEEA001A9BB4 /* Portrait.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = Portrait.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		55E9C7581788EEEA001A9BB4 /* UIKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = UIKit.framework; path = System/Library/Frameworks/UIKit.framework; sourceTree = SDKROOT; };
 		55E9C75A1788EEEA001A9BB4 /* Foundation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Foundation.framework; path = System/Library/Frameworks/Foundation.framework; sourceTree = SDKROOT; };
@@ -60,6 +70,9 @@
 		55E9C793178A859C001A9BB4 /* FaceRect.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = FaceRect.h; path = ../FaceRect.h; sourceTree = "<group>"; };
 		55E9C79D178B24DA001A9BB4 /* CoordinateSystemConversion.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = CoordinateSystemConversion.h; path = ../CoordinateSystemConversion.h; sourceTree = "<group>"; };
 		55E9C79E178B24DA001A9BB4 /* CoordinateSystemConversion.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = CoordinateSystemConversion.m; path = ../CoordinateSystemConversion.m; sourceTree = "<group>"; };
+		55ECB6C9178CFE57007EDB6B /* twitter.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = twitter.png; sourceTree = "<group>"; };
+		55ECB6CB178D0088007EDB6B /* mail.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = mail.png; sourceTree = "<group>"; };
+		55ECB6CD178D0305007EDB6B /* photo.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = photo.png; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -110,6 +123,8 @@
 		55E9C75E1788EEEA001A9BB4 /* Portrait */ = {
 			isa = PBXGroup;
 			children = (
+				55485441178DCCAB00556E49 /* Pallette.h */,
+				55485442178DCCAB00556E49 /* Pallette.m */,
 				55E9C79D178B24DA001A9BB4 /* CoordinateSystemConversion.h */,
 				55E9C79E178B24DA001A9BB4 /* CoordinateSystemConversion.m */,
 				55E9C793178A859C001A9BB4 /* FaceRect.h */,
@@ -127,6 +142,11 @@
 				55E9C7801788F3C2001A9BB4 /* PopPortraitViewController.h */,
 				55E9C7811788F3C2001A9BB4 /* PopPortraitViewController.m */,
 				55E9C7821788F3C2001A9BB4 /* PopPortraitViewController.xib */,
+				55ECB6CD178D0305007EDB6B /* photo.png */,
+				55ECB6CB178D0088007EDB6B /* mail.png */,
+				5548544D178DFDB300556E49 /* tumblr.png */,
+				5548544B178DFCA400556E49 /* twitter2.png */,
+				55ECB6C9178CFE57007EDB6B /* twitter.png */,
 				55E9C75F1788EEEA001A9BB4 /* Supporting Files */,
 			);
 			path = Portrait;
@@ -205,6 +225,11 @@
 				55E9C7721788EEEA001A9BB4 /* MainStoryboard.storyboard in Resources */,
 				55E9C77F1788F32D001A9BB4 /* PortraitFaceDefineViewController.xib in Resources */,
 				55E9C7841788F3C2001A9BB4 /* PopPortraitViewController.xib in Resources */,
+				55ECB6CA178CFE58007EDB6B /* twitter.png in Resources */,
+				55ECB6CC178D0088007EDB6B /* mail.png in Resources */,
+				55ECB6CE178D0305007EDB6B /* photo.png in Resources */,
+				5548544C178DFCA400556E49 /* twitter2.png in Resources */,
+				5548544E178DFDB300556E49 /* tumblr.png in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -223,6 +248,7 @@
 				55E9C7871788F4D4001A9BB4 /* PaintPortraitViewController.m in Sources */,
 				55E9C794178A859C001A9BB4 /* FaceRect.m in Sources */,
 				55E9C79F178B24DA001A9BB4 /* CoordinateSystemConversion.m in Sources */,
+				55485443178DCCAB00556E49 /* Pallette.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -345,6 +371,7 @@
 				55E9C77A1788EEEA001A9BB4 /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
 		};
 /* End XCConfigurationList section */
 	};
