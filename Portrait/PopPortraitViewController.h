@@ -7,6 +7,7 @@
 //
 #import "Pallette.h"
 @interface PopPortraitViewController : UIViewController <PalletteDelegate>
+- (IBAction)goBackToFaceDefine:(id)sender;
 
 - (IBAction)mail:(id)sender;
 - (IBAction)postTotwitter:(id)sender;

@@ -15,6 +15,7 @@
 }
 
 @property (nonatomic, retain) UIImage* faceImage;
+@property (retain) Pallette *pallettePanel;
 
 @end
 
@@ -38,6 +39,17 @@
     
 }
 
+- (BOOL)canBecomeFirstResponder {
+    
+    return YES;
+}
+
+- (void)viewDidAppear:(BOOL)animated {
+    
+    [self becomeFirstResponder];
+    
+}
+
 - (void) touchesBegan:(NSSet *)touches withEvent:(UIEvent *)event {
     
     drawPoint = YES;
@@ -54,20 +66,19 @@
     UIGraphicsBeginImageContext(self.faceImage.size);
     
     [self.imageView.image drawInRect:CGRectMake(0, 0, self.faceImage.size.width, self.faceImage.size.height)];
-    
+ 
     CGContextRef cgContext = UIGraphicsGetCurrentContext();
+    CGContextSetBlendMode(cgContext, kCGBlendModeNormal);
+    CGContextSetLineCap(cgContext, kCGLineCapRound);
+    CGContextSetLineWidth(cgContext, 5);
+    CGContextSetStrokeColorWithColor(cgContext, currentColor);
+
     CGContextMoveToPoint(cgContext, lastPoint.x, lastPoint.y);
     CGContextAddLineToPoint(cgContext, currentPoint.x, currentPoint.y);
-    CGContextSetLineCap(cgContext, kCGLineCapRound);
-    CGContextSetLineWidth(cgContext, 20.0);
-//    NSLog(@"stroke color %@", currentColor);
-    CGContextSetStrokeColorWithColor(cgContext, currentColor);
-    CGContextSetBlendMode(cgContext, kCGBlendModeMultiply);
     
     CGContextStrokePath(cgContext);
     
  //   self.drawingImage.image = UIGraphicsGetImageFromCurrentImageContext();
-    
     self.imageView.image = UIGraphicsGetImageFromCurrentImageContext();
     
     UIGraphicsEndImageContext();
@@ -78,17 +89,17 @@
 
 - (void)touchesEnded:(NSSet *)touches withEvent:(UIEvent *)event {
     if (drawPoint) {
+        // draw a rect
+        CGRect dodgeRect = CGRectMake(lastPoint.x - 10, lastPoint.y - 10, 40, 20);
         UIGraphicsBeginImageContext(self.faceImage.size);
         [self.imageView.image drawInRect:CGRectMake(0, 0, self.faceImage.size.width, self.faceImage.size.height)];
         
         CGContextRef cgContext = UIGraphicsGetCurrentContext();
-        CGContextMoveToPoint(cgContext, lastPoint.x, lastPoint.y);
-        CGContextAddLineToPoint(cgContext, lastPoint.x, lastPoint.y);
-        CGContextSetLineCap(cgContext, kCGLineCapRound);
-        CGContextSetLineWidth(cgContext, 20.0);
-        CGContextSetStrokeColorWithColor(cgContext, currentColor);
-        CGContextStrokePath(cgContext);
-     //   CGContextFlush(cgContext);
+        CGContextSetBlendMode(cgContext, kCGBlendModeOverlay);
+        CGContextSetAlpha(cgContext, 0.9);
+        CGContextSetFillColorWithColor(cgContext, currentColor);
+        
+        CGContextFillRect(cgContext, dodgeRect);
         
         self.imageView.image = UIGraphicsGetImageFromCurrentImageContext();
         
@@ -108,11 +119,11 @@
     [super viewDidLoad];
     // Do any additional setup after loading the view from its nib.
     self.imageView.image = self.faceImage;
-    Pallette *pallettePanel = [[Pallette alloc] initWithColor:[UIColor blueColor]];
-    pallettePanel.delegate = self;
-    pallettePanel.frame = CGRectMake(10, 10, 300, 40);
+    self.pallettePanel = [[Pallette alloc] initWithColor:[UIColor blueColor]];
+    self.pallettePanel.delegate = self;
+    self.pallettePanel.frame = CGRectMake(10, 10, 300, 40);
     
-    [self.view addSubview:pallettePanel];
+    [self.view addSubview:self.pallettePanel];
 }
 
 - (void)image:(UIImage *)image didFinishSavingWithError:(NSError *)error contextInfo:(void *)contextInfo {
@@ -138,6 +149,15 @@
     currentColor = [pickedColor CGColor];
 }
 
+- (IBAction)goBackToFaceDefine:(id)sender {
+
+    NSLog(@"I am called");
+    self.pallettePanel.delegate = nil;
+    [self.pallettePanel removeFromSuperview];
+    
+    [self.presentingViewController dismissViewControllerAnimated:YES completion:nil];
+}
+
 - (IBAction)mail:(id)sender {
 }
 
@@ -146,4 +166,22 @@
 
 - (IBAction)saveToPhotos:(id)sender {
 }
+
+# pragma handling motion events
+- (void)motionBegan:(UIEventSubtype)motion withEvent:(UIEvent *)event {
+    
+}
+
+- (void)motionEnded:(UIEventSubtype)motion withEvent:(UIEvent *)event {
+ 
+    if (motion == UIEventSubtypeMotionShake) {
+        NSLog(@"I am shaked");
+        self.imageView.image = self.faceImage;
+    }
+}
+
+- (void)motionCancelled:(UIEventSubtype)motion withEvent:(UIEvent *)event {
+    
+}
+
 @end

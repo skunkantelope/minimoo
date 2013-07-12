@@ -10,6 +10,9 @@
 
 @interface PortraitViewController : UIViewController <UIImagePickerControllerDelegate, UINavigationControllerDelegate>
 
+@property (retain, nonatomic) UIImage *userPhoto;
+@property (assign, nonatomic) BOOL didSelectPhoto;
+
 - (IBAction)selectPhotoFromAlbum:(id)sender;
 
 @end

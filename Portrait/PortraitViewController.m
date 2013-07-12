@@ -12,10 +12,11 @@
 @interface PortraitViewController () {
     BOOL didSelectPhoto;
 }
-@property (retain, nonatomic) UIImage *userPhoto;
+
 @end
 
 @implementation PortraitViewController
+@synthesize didSelectPhoto;
 
 - (void)viewDidLoad
 {

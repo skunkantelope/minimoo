@@ -9,6 +9,7 @@
 #import "Pallette.h"
 
 #define kColor 6
+//#define ARC4RANDOM_MAX 0x100000000
 
 @implementation Pallette 
 
@@ -31,15 +32,16 @@
         float alpha;
         [hue getHue:&chroma saturation:&saturation brightness:&brightness alpha:&alpha];
         
-        UIColor *white = [UIColor whiteColor];
-        
-        UIColor *complementary = [UIColor colorWithHue:arc4random_uniform(1) - chroma saturation:saturation brightness:brightness alpha:1.0];
+        //UIColor *white = [UIColor whiteColor];
+        //UIColor *red = [UIColor colorWithHue:0.0 saturation:1.0 brightness:0.7 alpha:0.8];
+        UIColor *fuschia = [UIColor colorWithRed:209.0/255.0f green:11.0/255.0f blue:187.0/255.0f alpha:0.8];
+        UIColor *complementary = [UIColor colorWithHue:0.8 - chroma saturation:saturation brightness:brightness alpha:1.0];
         UIColor *highlight = [UIColor colorWithHue:chroma saturation:0.1 brightness:1.0 alpha:1.0];
-        UIColor *light = [UIColor colorWithHue:chroma saturation:0.3 brightness:1.0 alpha:1.0];
+        UIColor *light = [UIColor colorWithHue:chroma saturation:0.3 brightness:0.9 alpha:1.0];
         UIColor *dark = [UIColor colorWithHue:chroma saturation:1.0 brightness:0.7 alpha:1.0];
-        UIColor *shadow = [UIColor colorWithHue:chroma saturation:1.0 brightness:0.0 alpha:1.0];
+        UIColor *shadow = [UIColor colorWithHue:chroma saturation:1.0 brightness:0.3 alpha:1.0];
         
-        NSArray *colors = @[complementary, white, highlight, light, dark, shadow];
+        NSArray *colors = @[complementary, fuschia, highlight, light, dark, shadow];
         
         float xOffset = 30.0;
         float width = 40.0;

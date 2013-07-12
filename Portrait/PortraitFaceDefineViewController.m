@@ -8,7 +8,7 @@
 
 #import "PortraitFaceDefineViewController.h"
 #import "FaceRect.h"
-//#import "PaintPortraitViewController.h"
+#import "PortraitViewController.h"
 #import "PopPortraitViewController.h"
 
 @interface PortraitFaceDefineViewController () {
@@ -26,7 +26,8 @@
 - (CIImage *)applyMedianFilter:(CIImage *) image;
 - (CIImage *)applyMinGreyScaleFilter:(CIImage *) image;
 - (CIImage *)applyMaxGreyScaleFilter:(CIImage *) image;
-- (CIImage *)applyDesaturationFilter:(CIImage *) cgImage;
+- (CIImage *)applyDesaturationFilter:(CIImage *) image;
+- (CIImage *)applyPosterizeFilter:(CIImage *) image;
 - (void)renderQuartzImage:(CGImageRef) image;
 
 @end
@@ -69,7 +70,10 @@
     [self detectFaces];
     
     // show the first face; view.tag = 30
-    [self.view bringSubviewToFront:[self.faces objectAtIndex:0]];
+    if (self.pageControl.numberOfPages > 0) {
+        [self.view bringSubviewToFront:[self.faces objectAtIndex:0]];
+
+    } 
 
 }
 
@@ -85,7 +89,11 @@
     // In case there are no faces detected, the scene goes back to the beginning scene.
     if (count < 1) {
         // todo: animation to tell user to pick a photo with faces.
-        [self.presentingViewController dismissViewControllerAnimated:YES completion:nil];
+        self.drawFace.enabled = NO;
+        
+        UIAlertView *alert = [[UIAlertView alloc] initWithTitle:@"" message:@"No faces were found in this picture. Pick another picture" delegate:nil cancelButtonTitle:@"Got it!" otherButtonTitles:nil];
+        [alert show];
+        
         return;
     }
   
@@ -164,6 +172,13 @@
     return [filter valueForKey:@"outputImage"];
 }
 
+- (CIImage *)applyPosterizeFilter:(CIImage *)image {
+    CIFilter *filter = [CIFilter filterWithName:@"CIColorPosterize"];
+    [filter setValue:image forKey:@"inputImage"];
+    [filter setValue:[NSNumber numberWithFloat:10.0] forKey:@"inputLevels"];
+    return [filter valueForKey:@"outputImage"];
+}
+
 - (void)didReceiveMemoryWarning
 {
     [super didReceiveMemoryWarning];
@@ -199,6 +214,15 @@
     CGImageRef result = [context createCGImage:touched fromRect:[touched extent]];
     
     [self renderQuartzImage:result];
+
+}
+
+- (IBAction)pickAnotherPhoto:(id)sender {
+    
+    PortraitViewController *viewController = (PortraitViewController *)self.presentingViewController;
+    viewController.userPhoto = nil;
+    viewController.didSelectPhoto = NO;
+    [self.presentingViewController dismissViewControllerAnimated:YES completion:nil];
 
 }
 
