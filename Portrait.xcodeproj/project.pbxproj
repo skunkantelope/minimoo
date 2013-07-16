@@ -8,8 +8,16 @@
 
 /* Begin PBXBuildFile section */
 		55485443178DCCAB00556E49 /* Pallette.m in Sources */ = {isa = PBXBuildFile; fileRef = 55485442178DCCAB00556E49 /* Pallette.m */; };
-		5548544C178DFCA400556E49 /* twitter2.png in Resources */ = {isa = PBXBuildFile; fileRef = 5548544B178DFCA400556E49 /* twitter2.png */; };
-		5548544E178DFDB300556E49 /* tumblr.png in Resources */ = {isa = PBXBuildFile; fileRef = 5548544D178DFDB300556E49 /* tumblr.png */; };
+		557890621794655000C706A2 /* iTunesArtwork in Resources */ = {isa = PBXBuildFile; fileRef = 557890611794655000C706A2 /* iTunesArtwork */; };
+		558F31221795ECFA00FBD188 /* Shake.png in Resources */ = {isa = PBXBuildFile; fileRef = 558F31211795ECFA00FBD188 /* Shake.png */; };
+		55BA76381794996E00F050F7 /* icon.png in Resources */ = {isa = PBXBuildFile; fileRef = 55BA76341794996E00F050F7 /* icon.png */; };
+		55BA76391794996E00F050F7 /* icon@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 55BA76351794996E00F050F7 /* icon@2x.png */; };
+		55BA763A1794996E00F050F7 /* small.png in Resources */ = {isa = PBXBuildFile; fileRef = 55BA76361794996E00F050F7 /* small.png */; };
+		55BA763B1794996E00F050F7 /* small@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 55BA76371794996E00F050F7 /* small@2x.png */; };
+		55BA76401794BB1200F050F7 /* red_button_default.png in Resources */ = {isa = PBXBuildFile; fileRef = 55BA763E1794BB1200F050F7 /* red_button_default.png */; };
+		55BA76411794BB1200F050F7 /* red_button_selected.png in Resources */ = {isa = PBXBuildFile; fileRef = 55BA763F1794BB1200F050F7 /* red_button_selected.png */; };
+		55D7B2191794C0BB0014918D /* Portrait_PolariodPrinter.png in Resources */ = {isa = PBXBuildFile; fileRef = 55D7B2181794C0BA0014918D /* Portrait_PolariodPrinter.png */; };
+		55D7B21E1794C1AA0014918D /* Signal.m in Sources */ = {isa = PBXBuildFile; fileRef = 55D7B21D1794C1AA0014918D /* Signal.m */; };
 		55E9C7591788EEEA001A9BB4 /* UIKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 55E9C7581788EEEA001A9BB4 /* UIKit.framework */; };
 		55E9C75B1788EEEA001A9BB4 /* Foundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 55E9C75A1788EEEA001A9BB4 /* Foundation.framework */; };
 		55E9C75D1788EEEA001A9BB4 /* CoreGraphics.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 55E9C75C1788EEEA001A9BB4 /* CoreGraphics.framework */; };
@@ -38,8 +46,17 @@
 /* Begin PBXFileReference section */
 		55485441178DCCAB00556E49 /* Pallette.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = Pallette.h; path = ../Pallette.h; sourceTree = "<group>"; };
 		55485442178DCCAB00556E49 /* Pallette.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = Pallette.m; path = ../Pallette.m; sourceTree = "<group>"; };
-		5548544B178DFCA400556E49 /* twitter2.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = twitter2.png; sourceTree = "<group>"; };
-		5548544D178DFDB300556E49 /* tumblr.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = tumblr.png; sourceTree = "<group>"; };
+		557890611794655000C706A2 /* iTunesArtwork */ = {isa = PBXFileReference; lastKnownFileType = file; path = iTunesArtwork; sourceTree = "<group>"; };
+		558F31211795ECFA00FBD188 /* Shake.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = Shake.png; path = ../Shake.png; sourceTree = "<group>"; };
+		55BA76341794996E00F050F7 /* icon.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = icon.png; sourceTree = "<group>"; };
+		55BA76351794996E00F050F7 /* icon@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "icon@2x.png"; sourceTree = "<group>"; };
+		55BA76361794996E00F050F7 /* small.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = small.png; sourceTree = "<group>"; };
+		55BA76371794996E00F050F7 /* small@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "small@2x.png"; sourceTree = "<group>"; };
+		55BA763E1794BB1200F050F7 /* red_button_default.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = red_button_default.png; sourceTree = "<group>"; };
+		55BA763F1794BB1200F050F7 /* red_button_selected.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = red_button_selected.png; sourceTree = "<group>"; };
+		55D7B2181794C0BA0014918D /* Portrait_PolariodPrinter.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = Portrait_PolariodPrinter.png; sourceTree = "<group>"; };
+		55D7B21C1794C1AA0014918D /* Signal.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = Signal.h; path = ../Signal.h; sourceTree = "<group>"; };
+		55D7B21D1794C1AA0014918D /* Signal.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = Signal.m; path = ../Signal.m; sourceTree = "<group>"; };
 		55E9C7551788EEEA001A9BB4 /* Portrait.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = Portrait.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		55E9C7581788EEEA001A9BB4 /* UIKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = UIKit.framework; path = System/Library/Frameworks/UIKit.framework; sourceTree = SDKROOT; };
 		55E9C75A1788EEEA001A9BB4 /* Foundation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Foundation.framework; path = System/Library/Frameworks/Foundation.framework; sourceTree = SDKROOT; };
@@ -123,6 +140,8 @@
 		55E9C75E1788EEEA001A9BB4 /* Portrait */ = {
 			isa = PBXGroup;
 			children = (
+				55D7B21C1794C1AA0014918D /* Signal.h */,
+				55D7B21D1794C1AA0014918D /* Signal.m */,
 				55485441178DCCAB00556E49 /* Pallette.h */,
 				55485442178DCCAB00556E49 /* Pallette.m */,
 				55E9C79D178B24DA001A9BB4 /* CoordinateSystemConversion.h */,
@@ -142,11 +161,6 @@
 				55E9C7801788F3C2001A9BB4 /* PopPortraitViewController.h */,
 				55E9C7811788F3C2001A9BB4 /* PopPortraitViewController.m */,
 				55E9C7821788F3C2001A9BB4 /* PopPortraitViewController.xib */,
-				55ECB6CD178D0305007EDB6B /* photo.png */,
-				55ECB6CB178D0088007EDB6B /* mail.png */,
-				5548544D178DFDB300556E49 /* tumblr.png */,
-				5548544B178DFCA400556E49 /* twitter2.png */,
-				55ECB6C9178CFE57007EDB6B /* twitter.png */,
 				55E9C75F1788EEEA001A9BB4 /* Supporting Files */,
 			);
 			path = Portrait;
@@ -155,6 +169,18 @@
 		55E9C75F1788EEEA001A9BB4 /* Supporting Files */ = {
 			isa = PBXGroup;
 			children = (
+				558F31211795ECFA00FBD188 /* Shake.png */,
+				55D7B2181794C0BA0014918D /* Portrait_PolariodPrinter.png */,
+				55BA763E1794BB1200F050F7 /* red_button_default.png */,
+				55BA763F1794BB1200F050F7 /* red_button_selected.png */,
+				55ECB6CD178D0305007EDB6B /* photo.png */,
+				55ECB6CB178D0088007EDB6B /* mail.png */,
+				55ECB6C9178CFE57007EDB6B /* twitter.png */,
+				557890611794655000C706A2 /* iTunesArtwork */,
+				55BA76341794996E00F050F7 /* icon.png */,
+				55BA76351794996E00F050F7 /* icon@2x.png */,
+				55BA76361794996E00F050F7 /* small.png */,
+				55BA76371794996E00F050F7 /* small@2x.png */,
 				55E9C7601788EEEA001A9BB4 /* Portrait-Info.plist */,
 				55E9C7611788EEEA001A9BB4 /* InfoPlist.strings */,
 				55E9C7641788EEEA001A9BB4 /* main.m */,
@@ -228,8 +254,15 @@
 				55ECB6CA178CFE58007EDB6B /* twitter.png in Resources */,
 				55ECB6CC178D0088007EDB6B /* mail.png in Resources */,
 				55ECB6CE178D0305007EDB6B /* photo.png in Resources */,
-				5548544C178DFCA400556E49 /* twitter2.png in Resources */,
-				5548544E178DFDB300556E49 /* tumblr.png in Resources */,
+				557890621794655000C706A2 /* iTunesArtwork in Resources */,
+				55BA76381794996E00F050F7 /* icon.png in Resources */,
+				55BA76391794996E00F050F7 /* icon@2x.png in Resources */,
+				55BA763A1794996E00F050F7 /* small.png in Resources */,
+				55BA763B1794996E00F050F7 /* small@2x.png in Resources */,
+				55BA76401794BB1200F050F7 /* red_button_default.png in Resources */,
+				55BA76411794BB1200F050F7 /* red_button_selected.png in Resources */,
+				55D7B2191794C0BB0014918D /* Portrait_PolariodPrinter.png in Resources */,
+				558F31221795ECFA00FBD188 /* Shake.png in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -249,6 +282,7 @@
 				55E9C794178A859C001A9BB4 /* FaceRect.m in Sources */,
 				55E9C79F178B24DA001A9BB4 /* CoordinateSystemConversion.m in Sources */,
 				55485443178DCCAB00556E49 /* Pallette.m in Sources */,
+				55D7B21E1794C1AA0014918D /* Signal.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

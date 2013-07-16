@@ -8,7 +8,7 @@
 
 #import <UIKit/UIKit.h>
 
-@interface PortraitViewController : UIViewController <UIImagePickerControllerDelegate, UINavigationControllerDelegate>
+@interface PortraitViewController : UIViewController <UIImagePickerControllerDelegate, UINavigationControllerDelegate, UIAlertViewDelegate>
 
 @property (retain, nonatomic) UIImage *userPhoto;
 @property (assign, nonatomic) BOOL didSelectPhoto;

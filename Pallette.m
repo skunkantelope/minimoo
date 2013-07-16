@@ -34,7 +34,7 @@
         
         //UIColor *white = [UIColor whiteColor];
         //UIColor *red = [UIColor colorWithHue:0.0 saturation:1.0 brightness:0.7 alpha:0.8];
-        UIColor *fuschia = [UIColor colorWithRed:209.0/255.0f green:11.0/255.0f blue:187.0/255.0f alpha:0.8];
+        UIColor *fuschia = [UIColor colorWithRed:209.0/255.0f green:0.0/255.0f blue:187.0/255.0f alpha:0.8];
         UIColor *complementary = [UIColor colorWithHue:0.8 - chroma saturation:saturation brightness:brightness alpha:1.0];
         UIColor *highlight = [UIColor colorWithHue:chroma saturation:0.1 brightness:1.0 alpha:1.0];
         UIColor *light = [UIColor colorWithHue:chroma saturation:0.3 brightness:0.9 alpha:1.0];
@@ -68,6 +68,23 @@
         [view addGestureRecognizer:tapGestureRecognizer];
     }
 }
+/*
+- (void)touchesBegan:(NSSet *)touches withEvent:(UIEvent *)event {
+    
+}
+
+- (void)touchesMoved:(NSSet *)touches withEvent:(UIEvent *)event {
+    
+}
+
+- (void)touchesEnded:(NSSet *)touches withEvent:(UIEvent *)event {
+    
+}
+
+- (void)touchesCancelled:(NSSet *)touches withEvent:(UIEvent *)event {
+    
+}
+ */
 /*
 // Only override drawRect: if you perform custom drawing.
 // An empty implementation adversely affects performance during animation.

@@ -12,10 +12,16 @@
     CGPoint lastPoint;
     BOOL drawPoint;
     CGColorRef currentColor;
+    CALayer *strokeLayer;
+    
 }
 
 @property (nonatomic, retain) UIImage* faceImage;
 @property (retain) Pallette *pallettePanel;
+
+- (void)brushSize:(CGRect) rect;
+
+- (void)removeContextCue:(UIGestureRecognizer *)gestureRecognizer;
 
 @end
 
@@ -34,6 +40,8 @@
     self = [super init];
     if (self) {
         self.faceImage = anImage;
+        currentColor = NULL;
+        strokeLayer = nil;
     }
     return self;
     
@@ -48,6 +56,26 @@
     
     [self becomeFirstResponder];
     
+    NSString *filePath = [[NSBundle mainBundle] pathForResource:@"Shake" ofType:@"png"];
+    UIImageView *contextCue = [[UIImageView alloc] initWithImage:[UIImage imageWithContentsOfFile:filePath]];
+    
+    UITapGestureRecognizer *tapGestureRecognizer = [[UITapGestureRecognizer alloc] initWithTarget:self action:@selector(removeContextCue:)];
+    tapGestureRecognizer.numberOfTapsRequired = 1;
+    [contextCue addGestureRecognizer:tapGestureRecognizer];
+    
+    contextCue.frame = CGRectMake(284, 10, 36, 48);
+    [self.view addSubview:contextCue];
+ /*   [UIView animateWithDuration:7
+                          delay:5
+                        options:UIViewAnimationOptionRepeat
+                     animations:^{
+                         [self.view addSubview:contextCue];
+                     }completion:nil
+     ];*/
+}
+
+- (void)removeContextCue:(UIGestureRecognizer *)gestureRecognizer {
+    [gestureRecognizer.view removeFromSuperview];
 }
 
 - (void) touchesBegan:(NSSet *)touches withEvent:(UIEvent *)event {
@@ -55,13 +83,14 @@
     drawPoint = YES;
     UITouch *touch = [touches anyObject];
     lastPoint = [touch locationInView:self.view];
+    
 }
 
 - (void) touchesMoved:(NSSet *)touches withEvent:(UIEvent *)event {
     
     drawPoint = NO;
     UITouch *touch = [touches anyObject];
-    CGPoint currentPoint = [touch locationInView:self.view];
+    CGPoint currentPoint = [touch locationInView:self.imageView];
     
     UIGraphicsBeginImageContext(self.faceImage.size);
     
@@ -89,8 +118,12 @@
 
 - (void)touchesEnded:(NSSet *)touches withEvent:(UIEvent *)event {
     if (drawPoint) {
+        
         // draw a rect
-        CGRect dodgeRect = CGRectMake(lastPoint.x - 10, lastPoint.y - 10, 40, 20);
+        CGRect rect = CGRectMake(lastPoint.x - 10, lastPoint.y - 10, 20, 20);
+        CGRect dodgeRect = faceRectInImage(rect, CGSizeMake(300, 350), self.faceImage.size);
+      //  CGRect dodgeRect = faceRectInImage(rect, CGSizeMake(300, 350), self.faceImage.size);
+        
         UIGraphicsBeginImageContext(self.faceImage.size);
         [self.imageView.image drawInRect:CGRectMake(0, 0, self.faceImage.size.width, self.faceImage.size.height)];
         
@@ -147,6 +180,26 @@
     UIColor *pickedColor = gestureRecognizer.view.backgroundColor;
  //   NSLog(@"color picked %@", pickedColor);
     currentColor = [pickedColor CGColor];
+
+    CGRect brushStroke = CGRectMake(10, 50, 30, 30);
+    [self brushSize:brushStroke];
+}
+
+- (void)brushSize:(CGRect) rect {
+    CALayer *layer = [CALayer layer];
+    layer.opacity = 0.6;
+    layer.backgroundColor = currentColor;
+    layer.shadowColor = [UIColor blackColor].CGColor;
+    layer.shadowOpacity = 0.4;
+    layer.shadowRadius = 2;
+    layer.shadowOffset = CGSizeMake(2,2);
+    layer.frame = rect;
+    
+    if (strokeLayer) {
+        [strokeLayer removeFromSuperlayer];
+    }
+    strokeLayer = layer;
+    [self.view.layer addSublayer:layer];
 }
 
 - (IBAction)goBackToFaceDefine:(id)sender {

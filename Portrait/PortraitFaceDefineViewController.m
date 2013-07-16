@@ -13,13 +13,14 @@
 
 @interface PortraitFaceDefineViewController () {
     CIContext *context;
-    CIDetector *detector;
+//    CIDetector *detector;
     
 }
 @property (retain, nonatomic) UIImage *image; // store a reference to the album photo
 @property (retain, nonatomic) NSMutableArray *faces; // store UIImageView
-
-- (void)detectFaces;
+@property (retain, nonatomic) NSArray *faceFeatures;
+@property (retain, nonatomic) CIContext *context;
+- (void)drawFaces;
 - (CIImage *)applyGreyScaleFilter:(CIImage *) image;
 - (CIImage *)applyPixellateFilter:(CIImage *) image;
 - (CIImage *)applySharpenFilter:(CIImage *) image;
@@ -28,6 +29,8 @@
 - (CIImage *)applyMaxGreyScaleFilter:(CIImage *) image;
 - (CIImage *)applyDesaturationFilter:(CIImage *) image;
 - (CIImage *)applyPosterizeFilter:(CIImage *) image;
+- (CIImage *)applyGaussianBlur:(CIImage *) image;
+- (CIImage *)applyOutlineSketch:(CIImage *) image;
 - (void)renderQuartzImage:(CGImageRef) image;
 
 @end
@@ -38,6 +41,7 @@
 #define Y_OFFSET 10
 
 @implementation PortraitFaceDefineViewController
+@synthesize context;
 
 - (id)initWithNibName:(NSString *)nibNameOrNil bundle:(NSBundle *)nibBundleOrNil
 {
@@ -48,17 +52,19 @@
     return self;
 }
 
-- (id)initWithImage:(UIImage *)image {
+- (id)initWithImage:(UIImage *)image features:(NSArray *)features andContext:(CIContext *)c {
     self = [super init];
     if (self) {
         // create CI context object
-        context = [CIContext contextWithOptions:nil];
+ //       context = [CIContext contextWithOptions:nil];
         // create face detector object.
-        NSDictionary *opts = [NSDictionary dictionaryWithObject:CIDetectorAccuracyHigh forKey:CIDetectorAccuracy];
-        detector = [CIDetector detectorOfType:CIDetectorTypeFace context:context options:opts];
+ //       NSDictionary *opts = [NSDictionary dictionaryWithObject:CIDetectorAccuracyHigh forKey:CIDetectorAccuracy];
+ //       detector = [CIDetector detectorOfType:CIDetectorTypeFace context:context options:opts];
         
         self.image = image;
         self.faces = [[NSMutableArray alloc] init];
+        self.faceFeatures = features;
+        self.context = c;
     }
     return self;
 }
@@ -67,38 +73,19 @@
 {
     [super viewDidLoad];
     // Do any additional setup after loading the view from its nib.
-    [self detectFaces];
-    
+    [self drawFaces];
+    self.pageControl.numberOfPages = [self.faceFeatures count];
+    NSLog(@"number of pages: %i", [self.faceFeatures count]);
     // show the first face; view.tag = 30
-    if (self.pageControl.numberOfPages > 0) {
-        [self.view bringSubviewToFront:[self.faces objectAtIndex:0]];
-
-    } 
+ 
+    [self.view bringSubviewToFront:[self.faces objectAtIndex:0]];
 
 }
 
-- (void)detectFaces {
-    // call CIImage property of UIImage does not work or provide a valid CIImage.
-    CIImage *image = [CIImage imageWithCGImage:[self.image CGImage]];
- //     NSDictionary *opts = [NSDictionary dictionaryWithObject:[[image properties] valueForKey:(NSString*)kCGImagePropertyOrientation] forKey:CIDetectorImageOrientation];
-    NSArray *features = [detector featuresInImage:image options:nil];
+- (void)drawFaces {
     
-    int count = [features count];
-    self.pageControl.numberOfPages = count;
-    NSLog(@"number of faces: %i", count);
-    // In case there are no faces detected, the scene goes back to the beginning scene.
-    if (count < 1) {
-        // todo: animation to tell user to pick a photo with faces.
-        self.drawFace.enabled = NO;
+    for (CIFaceFeature *feature in self.faceFeatures) {
         
-        UIAlertView *alert = [[UIAlertView alloc] initWithTitle:@"" message:@"No faces were found in this picture. Pick another picture" delegate:nil cancelButtonTitle:@"Got it!" otherButtonTitles:nil];
-        [alert show];
-        
-        return;
-    }
-  
-    for (CIFaceFeature *feature in features) {
-
         UIImageView *imageView = [[UIImageView alloc] initWithImage:self.image];
         imageView.contentMode = UIViewContentModeScaleAspectFit;
         imageView.frame = CGRectMake(X_OFFSET, Y_OFFSET, IMAGE_WIDTH, IMAGE_HEIGHT);
@@ -113,12 +100,12 @@
         FaceRect *faceRect = [[FaceRect alloc] initWithFrame:featureFrame];
         //[faceRect becomeFirstResponder];
         [imageView addSubview:faceRect];
-       
+        
         [self.faces addObject:imageView];
         
         [self.view addSubview:imageView];
     }
-    
+
 }
 
 - (CIImage *) applyGreyScaleFilter:(CIImage *)image {
@@ -135,7 +122,7 @@
 - (CIImage *)applyPixellateFilter:(CIImage *)image {
     CIFilter *filter = [CIFilter filterWithName:@"CIPixellate"];
     [filter setValue:image forKey:@"inputImage"];
-    [filter setValue:[NSNumber numberWithFloat:20.0] forKey:@"inputScale"];
+    [filter setValue:[NSNumber numberWithFloat:17.0] forKey:@"inputScale"];
   //  CIVector * position = [CIVector vectorWithX:0.0 Y:200.0];
   //  [filter setValue:position forKey:@"inputCenter"];
     return [filter valueForKey:@"outputImage"];
@@ -179,6 +166,20 @@
     return [filter valueForKey:@"outputImage"];
 }
 
+- (CIImage *)applyGaussianBlur:(CIImage *)image {
+    CIFilter *filter = [CIFilter filterWithName:@"CIGaussianBlur"];
+    [filter setValue:image forKey:@"inputImage"];
+    [filter setValue:[NSNumber numberWithFloat:12.00] forKey:@"inputRadius"];
+    return [filter valueForKey:@"outputImage"];
+}
+
+- (CIImage *)applyOutlineSketch:(CIImage *)image {
+    CIFilter *filter = [CIFilter filterWithName:@"CILineOverlay"];
+    [filter setValue:image forKey:@"inputImage"];
+
+    return [filter valueForKey:@"outputImage"];
+}
+
 - (void)didReceiveMemoryWarning
 {
     [super didReceiveMemoryWarning];
@@ -211,6 +212,8 @@
         
     CIImage *touched1 = [self applySharpenFilter:[self applyDesaturationFilter:image]];
     CIImage *touched = [self applyPixellateFilter:touched1];
+ //   CIImage *touched1 = [self applyGaussianBlur:[self applyDesaturationFilter:image]];
+ //   CIImage *touched = [self applyPosterizeFilter:touched1];
     CGImageRef result = [context createCGImage:touched fromRect:[touched extent]];
     
     [self renderQuartzImage:result];

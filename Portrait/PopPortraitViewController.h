@@ -14,7 +14,7 @@
 
 - (IBAction)saveToPhotos:(id)sender;
 @property (weak, nonatomic) IBOutlet UIImageView *imageView;
-@property (weak, nonatomic) IBOutlet UIImageView *drawingImage;
+//@property (weak, nonatomic) IBOutlet UIImageView *drawingImage;
 - (id)initWithImage:(UIImage *)anImage;
 
 @end
