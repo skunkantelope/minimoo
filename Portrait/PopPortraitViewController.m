@@ -7,6 +7,7 @@
 //
 
 #import "PopPortraitViewController.h"
+#import <Social/Social.h>
 
 @interface PopPortraitViewController () {
     CGPoint lastPoint;
@@ -160,7 +161,7 @@
 }
 
 - (void)image:(UIImage *)image didFinishSavingWithError:(NSError *)error contextInfo:(void *)contextInfo {
-    if (!error) {
+    if (error) {
         UIAlertView *alert = [[UIAlertView alloc] initWithTitle:@"Error" message:@"Image could not be saved."  delegate:nil cancelButtonTitle:nil otherButtonTitles:@"Close", nil];
         [alert show];
     } else {
@@ -211,13 +212,38 @@
     [self.presentingViewController dismissViewControllerAnimated:YES completion:nil];
 }
 
-- (IBAction)mail:(id)sender {
+- (IBAction)postTotwitter:(id)sender {
+    
+    SLComposeViewController *tweetSheet = [SLComposeViewController composeViewControllerForServiceType:SLServiceTypeTwitter];
+    [tweetSheet setInitialText:@"This is a painting that I did with Pop Art Portrait."];
+    [tweetSheet addImage:self.imageView.image];
+    [self presentViewController:tweetSheet animated:YES completion:nil];
+
 }
 
-- (IBAction)postTotwitter:(id)sender {
+- (IBAction)postToFacebook:(id)sender {
+        
+        SLComposeViewController *facebookSheet = [SLComposeViewController composeViewControllerForServiceType:SLServiceTypeFacebook];
+        [facebookSheet setInitialText:@"This is a painting that I did with Pop Art Portrait"];
+        [facebookSheet addImage:self.imageView.image];
+        [self presentViewController:facebookSheet animated:YES completion:nil];
+
+
+}
+
+- (IBAction)postToWeibo:(id)sender {
+        
+        SLComposeViewController *weiboSheet = [SLComposeViewController composeViewControllerForServiceType:SLServiceTypeSinaWeibo];
+        [weiboSheet setInitialText:@"This is a painting that I did with Pop Art Portrait"];
+        [weiboSheet addImage:self.imageView.image];
+        [self presentViewController:weiboSheet animated:YES completion:nil];
+
+
 }
 
 - (IBAction)saveToPhotos:(id)sender {
+    
+    UIImageWriteToSavedPhotosAlbum(self.imageView.image, self, @selector(image:didFinishSavingWithError:contextInfo:), nil);
 }
 
 # pragma handling motion events

@@ -8,6 +8,12 @@
 
 /* Begin PBXBuildFile section */
 		55485443178DCCAB00556E49 /* Pallette.m in Sources */ = {isa = PBXBuildFile; fileRef = 55485442178DCCAB00556E49 /* Pallette.m */; };
+		554F358F17960AA7006A9B4D /* facebook.png in Resources */ = {isa = PBXBuildFile; fileRef = 554F358E17960AA7006A9B4D /* facebook.png */; };
+		554F359117960F3A006A9B4D /* Social.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 554F359017960F3A006A9B4D /* Social.framework */; };
+		554F35971796159A006A9B4D /* AddressBook.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 554F35941796159A006A9B4D /* AddressBook.framework */; };
+		554F35981796159A006A9B4D /* AddressBookUI.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 554F35951796159A006A9B4D /* AddressBookUI.framework */; };
+		554F35991796159A006A9B4D /* MessageUI.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 554F35961796159A006A9B4D /* MessageUI.framework */; };
+		554F359B17961A2A006A9B4D /* weibo.png in Resources */ = {isa = PBXBuildFile; fileRef = 554F359A17961A2A006A9B4D /* weibo.png */; };
 		557890621794655000C706A2 /* iTunesArtwork in Resources */ = {isa = PBXBuildFile; fileRef = 557890611794655000C706A2 /* iTunesArtwork */; };
 		558F31221795ECFA00FBD188 /* Shake.png in Resources */ = {isa = PBXBuildFile; fileRef = 558F31211795ECFA00FBD188 /* Shake.png */; };
 		55BA76381794996E00F050F7 /* icon.png in Resources */ = {isa = PBXBuildFile; fileRef = 55BA76341794996E00F050F7 /* icon.png */; };
@@ -33,7 +39,6 @@
 		55E9C77F1788F32D001A9BB4 /* PortraitFaceDefineViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 55E9C77D1788F32D001A9BB4 /* PortraitFaceDefineViewController.xib */; };
 		55E9C7831788F3C2001A9BB4 /* PopPortraitViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 55E9C7811788F3C2001A9BB4 /* PopPortraitViewController.m */; };
 		55E9C7841788F3C2001A9BB4 /* PopPortraitViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 55E9C7821788F3C2001A9BB4 /* PopPortraitViewController.xib */; };
-		55E9C7871788F4D4001A9BB4 /* PaintPortraitViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 55E9C7861788F4D4001A9BB4 /* PaintPortraitViewController.m */; };
 		55E9C78C17891B22001A9BB4 /* CoreImage.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 55E9C78B17891B21001A9BB4 /* CoreImage.framework */; };
 		55E9C78E178A0BB7001A9BB4 /* QuartzCore.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 55E9C78D178A0BB6001A9BB4 /* QuartzCore.framework */; };
 		55E9C794178A859C001A9BB4 /* FaceRect.m in Sources */ = {isa = PBXBuildFile; fileRef = 55E9C792178A859C001A9BB4 /* FaceRect.m */; };
@@ -46,6 +51,12 @@
 /* Begin PBXFileReference section */
 		55485441178DCCAB00556E49 /* Pallette.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = Pallette.h; path = ../Pallette.h; sourceTree = "<group>"; };
 		55485442178DCCAB00556E49 /* Pallette.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = Pallette.m; path = ../Pallette.m; sourceTree = "<group>"; };
+		554F358E17960AA7006A9B4D /* facebook.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = facebook.png; sourceTree = "<group>"; };
+		554F359017960F3A006A9B4D /* Social.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Social.framework; path = System/Library/Frameworks/Social.framework; sourceTree = SDKROOT; };
+		554F35941796159A006A9B4D /* AddressBook.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = AddressBook.framework; path = System/Library/Frameworks/AddressBook.framework; sourceTree = SDKROOT; };
+		554F35951796159A006A9B4D /* AddressBookUI.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = AddressBookUI.framework; path = System/Library/Frameworks/AddressBookUI.framework; sourceTree = SDKROOT; };
+		554F35961796159A006A9B4D /* MessageUI.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = MessageUI.framework; path = System/Library/Frameworks/MessageUI.framework; sourceTree = SDKROOT; };
+		554F359A17961A2A006A9B4D /* weibo.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = weibo.png; sourceTree = "<group>"; };
 		557890611794655000C706A2 /* iTunesArtwork */ = {isa = PBXFileReference; lastKnownFileType = file; path = iTunesArtwork; sourceTree = "<group>"; };
 		558F31211795ECFA00FBD188 /* Shake.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = Shake.png; path = ../Shake.png; sourceTree = "<group>"; };
 		55BA76341794996E00F050F7 /* icon.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = icon.png; sourceTree = "<group>"; };
@@ -79,8 +90,6 @@
 		55E9C7801788F3C2001A9BB4 /* PopPortraitViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = PopPortraitViewController.h; sourceTree = "<group>"; };
 		55E9C7811788F3C2001A9BB4 /* PopPortraitViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = PopPortraitViewController.m; sourceTree = "<group>"; };
 		55E9C7821788F3C2001A9BB4 /* PopPortraitViewController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = PopPortraitViewController.xib; sourceTree = "<group>"; };
-		55E9C7851788F4D4001A9BB4 /* PaintPortraitViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = PaintPortraitViewController.h; sourceTree = "<group>"; };
-		55E9C7861788F4D4001A9BB4 /* PaintPortraitViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = PaintPortraitViewController.m; sourceTree = "<group>"; };
 		55E9C78B17891B21001A9BB4 /* CoreImage.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoreImage.framework; path = System/Library/Frameworks/CoreImage.framework; sourceTree = SDKROOT; };
 		55E9C78D178A0BB6001A9BB4 /* QuartzCore.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = QuartzCore.framework; path = System/Library/Frameworks/QuartzCore.framework; sourceTree = SDKROOT; };
 		55E9C792178A859C001A9BB4 /* FaceRect.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = FaceRect.m; path = ../FaceRect.m; sourceTree = "<group>"; };
@@ -97,6 +106,10 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				554F35971796159A006A9B4D /* AddressBook.framework in Frameworks */,
+				554F35981796159A006A9B4D /* AddressBookUI.framework in Frameworks */,
+				554F35991796159A006A9B4D /* MessageUI.framework in Frameworks */,
+				554F359117960F3A006A9B4D /* Social.framework in Frameworks */,
 				55E9C78E178A0BB7001A9BB4 /* QuartzCore.framework in Frameworks */,
 				55E9C78C17891B22001A9BB4 /* CoreImage.framework in Frameworks */,
 				55E9C7591788EEEA001A9BB4 /* UIKit.framework in Frameworks */,
@@ -128,6 +141,10 @@
 		55E9C7571788EEEA001A9BB4 /* Frameworks */ = {
 			isa = PBXGroup;
 			children = (
+				554F35941796159A006A9B4D /* AddressBook.framework */,
+				554F35951796159A006A9B4D /* AddressBookUI.framework */,
+				554F35961796159A006A9B4D /* MessageUI.framework */,
+				554F359017960F3A006A9B4D /* Social.framework */,
 				55E9C78D178A0BB6001A9BB4 /* QuartzCore.framework */,
 				55E9C78B17891B21001A9BB4 /* CoreImage.framework */,
 				55E9C7581788EEEA001A9BB4 /* UIKit.framework */,
@@ -151,8 +168,6 @@
 				55E9C7671788EEEA001A9BB4 /* PortraitAppDelegate.h */,
 				55E9C7681788EEEA001A9BB4 /* PortraitAppDelegate.m */,
 				55E9C7701788EEEA001A9BB4 /* MainStoryboard.storyboard */,
-				55E9C7851788F4D4001A9BB4 /* PaintPortraitViewController.h */,
-				55E9C7861788F4D4001A9BB4 /* PaintPortraitViewController.m */,
 				55E9C7731788EEEA001A9BB4 /* PortraitViewController.h */,
 				55E9C7741788EEEA001A9BB4 /* PortraitViewController.m */,
 				55E9C77B1788F32D001A9BB4 /* PortraitFaceDefineViewController.h */,
@@ -169,6 +184,8 @@
 		55E9C75F1788EEEA001A9BB4 /* Supporting Files */ = {
 			isa = PBXGroup;
 			children = (
+				554F359A17961A2A006A9B4D /* weibo.png */,
+				554F358E17960AA7006A9B4D /* facebook.png */,
 				558F31211795ECFA00FBD188 /* Shake.png */,
 				55D7B2181794C0BA0014918D /* Portrait_PolariodPrinter.png */,
 				55BA763E1794BB1200F050F7 /* red_button_default.png */,
@@ -263,6 +280,8 @@
 				55BA76411794BB1200F050F7 /* red_button_selected.png in Resources */,
 				55D7B2191794C0BB0014918D /* Portrait_PolariodPrinter.png in Resources */,
 				558F31221795ECFA00FBD188 /* Shake.png in Resources */,
+				554F358F17960AA7006A9B4D /* facebook.png in Resources */,
+				554F359B17961A2A006A9B4D /* weibo.png in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -278,7 +297,6 @@
 				55E9C7751788EEEA001A9BB4 /* PortraitViewController.m in Sources */,
 				55E9C77E1788F32D001A9BB4 /* PortraitFaceDefineViewController.m in Sources */,
 				55E9C7831788F3C2001A9BB4 /* PopPortraitViewController.m in Sources */,
-				55E9C7871788F4D4001A9BB4 /* PaintPortraitViewController.m in Sources */,
 				55E9C794178A859C001A9BB4 /* FaceRect.m in Sources */,
 				55E9C79F178B24DA001A9BB4 /* CoordinateSystemConversion.m in Sources */,
 				55485443178DCCAB00556E49 /* Pallette.m in Sources */,
